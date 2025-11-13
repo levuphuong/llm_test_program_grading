@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LLM Code Grader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 300px;
+            background: #f4f4f4;
+            border-right: 1px solid #ddd;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #sidebar h3 {
+            margin-top: 0;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #sidebar li {
+            cursor: pointer;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            white-space: normal; /* hiển thị đầy đủ text */
+        }
+        #sidebar li:hover {
+            background: #e0e0e0;
+        }
+        #sidebar li.active {
+            background-color: #c0e0ff; /* highlight màu xanh nhạt */
+            font-weight: bold;
+        }
+        #main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        textarea {
+            width: 100%;
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        #problem {
+            height: 120px;
+        }
+        #code {
+            height: 200px;
+        }
+        #submit-btn {
+            width: 150px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #result {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 250px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        ul.testcases {
+            padding-left: 20px;
+        }
+        ul.testcases li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h3>Question List</h3>
+        <ul id="question-list">
+            <script>
+                // Sidebar dynamic từ backend
+                const questions = <!-- QUESTION_LIST_PLACEHOLDER -->;
+                const ul = document.getElementById('question-list');
+                questions.forEach(q => {
+                    const li = document.createElement('li');
+                    li.textContent = `ID:${q.task_id} - ${q.text}`;
+                    li.dataset.problem = q.text;
+                    li.dataset.code = q.code || "";
+                    ul.appendChild(li);
+                });
+
+                document.addEventListener("DOMContentLoaded", () => {
+                    const items = document.querySelectorAll('#question-list li');
+                    items.forEach(item => {
+                        item.addEventListener('click', () => {
+                            // Điền problem + code
+                            document.getElementById('problem').value = item.dataset.problem;
+                            document.getElementById('code').value = item.dataset.code;
+
+                            // Highlight item active
+                            items.forEach(i => i.classList.remove('active'));
+                            item.classList.add('active');
+                        });
+                    });
+                });
+            </script>
+        </ul>
+    </div>
+
+    <div id="main">
+        <h2>LLM Code Grader</h2>
+        <label for="problem"><strong>Problem:</strong></label>
+        <textarea id="problem" placeholder="Problem description will appear here..."></textarea>
+
+        <label for="code"><strong>Your Code:</strong></label>
+        <textarea id="code" placeholder="Write your Python code here..."></textarea>
+
+        <button id="submit-btn">Submit Code</button>
+
+        <h3>Grading Result:</h3>
+        <div id="result">Result will appear here after submission...</div>
+
+        <script>
+            document.getElementById("submit-btn").addEventListener("click", async () => {
+                const problem = document.getElementById("problem").value;
+                const code = document.getElementById("code").value;
+
+                const formData = new FormData();
+                formData.append("problem", problem);
+                formData.append("code", code);
+
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = "Running grading...";
+
+                const response = await fetch("/submit_code", {
+                    method: "POST",
+                    body: formData
+                });
+
+                resultDiv.innerHTML = "";
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Score info
+                    const scoreInfo = document.createElement("div");
+                    scoreInfo.innerHTML = `<strong>Score:</strong> ${data.score.score || 0}/100
+                                           <br><strong>Passed:</strong> ${data.score.passed_count || 0}, 
+                                           <strong>Failed:</strong> ${data.score.failed_count || 0}
+                                           <br><strong>Feedback:</strong> ${data.score.feedback || "No feedback"}`;
+                    resultDiv.appendChild(scoreInfo);
+
+                    // Test case detail
+                    if (data.test_result && data.test_result.results) {
+                        const ul = document.createElement("ul");
+                        ul.className = "testcases";
+                        data.test_result.results.forEach(tc => {
+                            const li = document.createElement("li");
+                            li.innerHTML = `Args: ${JSON.stringify(tc.args)} - Expected: ${JSON.stringify(tc.expected)} - Result: ${JSON.stringify(tc.result)} - <strong style="color:${tc.passed ? 'green':'red'}">${tc.passed ? 'Passed' : 'Failed'}</strong>`;
+                            ul.appendChild(li);
+                        });
+                        resultDiv.appendChild(ul);
+                    }
+                } else {
+                    resultDiv.textContent = "Error submitting code!";
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

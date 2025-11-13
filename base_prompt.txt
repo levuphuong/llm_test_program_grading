@@ -1,0 +1,39 @@
+Task:
+
+You must generate exactly 5 JSON objects, each representing one test case.
+
+Each JSON object must follow this exact structure:
+
+{
+"input": {
+"args": [...] # Values for the function arguments, in the correct order
+},
+"output": {
+"expected": ... # The exact return value after executing the function with these args
+}
+}
+
+Combine all 5 objects into a single JSON array:
+
+[
+{ ... },
+{ ... },
+{ ... },
+{ ... },
+{ ... }
+]
+
+Requirements:
+
+The function name and its argument list are already provided. Do not infer or detect them.
+
+Your job is only to:
+(a) Generate valid input values for the arguments.
+(b) Simulate the function exactly as Python would execute it.
+(c) Compute the correct return value.
+
+The simulation must follow Python's exact execution order, including how string slicing and iteration affect indices after mutation.
+
+The final output must be valid JSON that can be parsed by json.loads().
+
+Output JSON only. Do not include explanations, markdown, comments, or any extra text.
