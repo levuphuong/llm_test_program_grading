@@ -84,7 +84,6 @@ Student solution:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0,
             )
-            print (f"prompt:{resp.choices[0].message.content}")
             return resp.choices[0].message.content
 
         except RateLimitError:
@@ -125,28 +124,23 @@ def safe_extract_list(llm_raw):
         except:
             return []
 
-import json
-import re
+import re, json
 
 def parse_test_string(raw: str):
-    # 1. remove code block markers
     cleaned = re.sub(r"```(?:json)?", "", raw).strip()
-
-    # 2. Replace Python literals with JSON literals
-    cleaned = cleaned.replace("None", "null")
-    cleaned = cleaned.replace("True", "true")
-    cleaned = cleaned.replace("False", "false")
-
-    # 3. Convert tuples (x, y) → [x, y]
+    cleaned = cleaned.replace("None", "null").replace("True", "true").replace("False", "false")
     cleaned = re.sub(r"\(([^()]+)\)", r"[\1]", cleaned)
+    cleaned = cleaned.replace("'", '"')
+    # cleaned = re.sub(r",\s*([}\]])", r"\1", cleaned)
 
-    # 4. Replace single quotes → double quotes for JSON
-    cleaned = cleaned.replace("'", "\"")
+    # Escape nội bộ trong feedback hoặc các string dài
+    def escape_quotes_in_values(match):
+        val = match.group(2)
+        val_escaped = val.replace('\\', '\\\\').replace('"', '\\"')
+        return f'{match.group(1)}"{val_escaped}"'
 
-    # 5. Remove trailing commas before } or ]
-    cleaned = re.sub(r",\s*([}\]])", r"\1", cleaned)
+    cleaned = re.sub(r'(".*?"\s*:\s*)"([^"]*?)"', escape_quotes_in_values, cleaned)
 
-    # 6. Try to parse JSON
     try:
         return json.loads(cleaned)
     except Exception as e:
@@ -185,7 +179,6 @@ def validate_and_save(validate_data, grading_prompt, epochs=1):
                 real = executed_outputs[i] if i < len(executed_outputs) else None
 
                 total_tests += 1
-                print (f"pred: {pred}, real:{real}")
                 ok = (str(pred.get("expected", None)) == str(real))
                 if ok:
                     total_match += 1
@@ -221,7 +214,8 @@ def grade_student_code(student_code: str, test_result: dict, base_prompt_path: s
     )
     llm_text = response.choices[0].message.content
     try:
-        llm_score = json.loads(llm_text)
+        llm_score = parse_test_string(llm_text)
+        
     except json.JSONDecodeError:
         llm_score = {"error": "Invalid JSON from LLM", "raw_response": llm_text}
     return llm_score

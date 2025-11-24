@@ -153,7 +153,15 @@
                                            <br><strong>Feedback:</strong> ${data.score.feedback || "No feedback"}`;
                     resultDiv.appendChild(scoreInfo);
 
-                    // Test case detail
+                    if (data.score) {
+                        const scoreInfo = document.createElement("div");
+                        scoreInfo.innerHTML = `<strong>Score:</strong> ${data.score.score || 0}/100
+                                            <br><strong>Passed:</strong> ${data.score.passed_count || 0}, 
+                                            <strong>Failed:</strong> ${data.score.failed_count || 0}
+                                            <br><strong>Feedback:</strong> ${data.score.feedback || "No feedback"}`;
+                        resultDiv.appendChild(scoreInfo);
+                    }
+
                     if (data.test_result && data.test_result.results) {
                         const ul = document.createElement("ul");
                         ul.className = "testcases";
@@ -164,6 +172,7 @@
                         });
                         resultDiv.appendChild(ul);
                     }
+
                 } else {
                     resultDiv.textContent = "Error submitting code!";
                 }
