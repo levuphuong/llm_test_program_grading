@@ -1,0 +1,4980 @@
+[
+  {
+    "task_id": 829,
+    "prompt": "Write a function to find out the second most repeated (or frequent) string in the given sequence.",
+    "solution": "from collections import Counter \r\n\t\r\ndef second_frequent(input): \r\n\tdict = Counter(input) \r\n\tvalue = sorted(dict.values(), reverse=True)  \r\n\tsecond_large = value[1] \r\n\tfor (key, val) in dict.items(): \r\n\t\tif val == second_large: \r\n\t\t\treturn (key) ",
+    "tests": [
+      {
+        "args": [
+          [
+            "aaa",
+            "bbb",
+            "ccc",
+            "bbb",
+            "aaa",
+            "aaa"
+          ]
+        ],
+        "expected": "bbb"
+      },
+      {
+        "args": [
+          [
+            "abc",
+            "bcd",
+            "abc",
+            "bcd",
+            "bcd",
+            "bcd"
+          ]
+        ],
+        "expected": "abc"
+      },
+      {
+        "args": [
+          [
+            "cdma",
+            "gsm",
+            "hspa",
+            "gsm",
+            "cdma",
+            "cdma"
+          ]
+        ],
+        "expected": "gsm"
+      }
+    ]
+  },
+  {
+    "task_id": 650,
+    "prompt": "Write a python function to check whether the given two arrays are equal or not.",
+    "solution": "def are_Equal(arr1,arr2,n,m):\r\n    if (n != m):\r\n        return False\r\n    arr1.sort()\r\n    arr2.sort()\r\n    for i in range(0,n - 1):\r\n        if (arr1[i] != arr2[i]):\r\n            return False\r\n    return True",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            2,
+            1
+          ],
+          3,
+          3
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          3,
+          3
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            8,
+            9
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          2,
+          3
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 807,
+    "prompt": "Write a python function to find the first odd number in a given list of numbers.",
+    "solution": "def first_odd(nums):\r\n  first_odd = next((el for el in nums if el%2!=0),-1)\r\n  return first_odd",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            3,
+            5
+          ]
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            2,
+            4,
+            1,
+            3
+          ]
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "task_id": 292,
+    "prompt": "Write a python function to find quotient of two numbers.",
+    "solution": "def find(n,m):  \r\n    q = n//m \r\n    return (q)",
+    "tests": [
+      {
+        "args": [
+          10,
+          3
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          4,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          20,
+          5
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "task_id": 571,
+    "prompt": "Write a function to find maximum possible sum of disjoint pairs for the given array of integers and a number k.",
+    "solution": "def max_sum_pair_diff_lessthan_K(arr, N, K): \r\n\tarr.sort() \r\n\tdp = [0] * N \r\n\tdp[0] = 0\r\n\tfor i in range(1, N): \r\n\t\tdp[i] = dp[i-1] \r\n\t\tif (arr[i] - arr[i-1] < K): \r\n\t\t\tif (i >= 2): \r\n\t\t\t\tdp[i] = max(dp[i], dp[i-2] + arr[i] + arr[i-1]); \r\n\t\t\telse: \r\n\t\t\t\tdp[i] = max(dp[i], arr[i] + arr[i-1]); \r\n\treturn dp[N - 1]",
+    "tests": [
+      {
+        "args": [
+          [
+            3,
+            5,
+            10,
+            15,
+            17,
+            12,
+            9
+          ],
+          7,
+          4
+        ],
+        "expected": 62
+      },
+      {
+        "args": [
+          [
+            5,
+            15,
+            10,
+            300
+          ],
+          4,
+          12
+        ],
+        "expected": 25
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          6,
+          6
+        ],
+        "expected": 21
+      }
+    ]
+  },
+  {
+    "task_id": 90,
+    "prompt": "Write a python function to find the length of the longest word.",
+    "solution": "def len_log(list1):\r\n    max=len(list1[0])\r\n    for i in list1:\r\n        if len(i)>max:\r\n            max=len(i)\r\n    return max",
+    "tests": [
+      {
+        "args": [
+          [
+            "python",
+            "PHP",
+            "bigdata"
+          ]
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          [
+            "a",
+            "ab",
+            "abc"
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            "small",
+            "big",
+            "tall"
+          ]
+        ],
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "task_id": 869,
+    "prompt": "Write a function to remove sublists from a given list of lists, which are outside a given range.",
+    "solution": "def remove_list_range(list1, leftrange, rigthrange):\r\n   result = [i for i in list1 if (min(i)>=leftrange and max(i)<=rigthrange)]\r\n   return result",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              2
+            ],
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              6,
+              7
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              13,
+              14,
+              15,
+              17
+            ]
+          ],
+          13,
+          17
+        ],
+        "expected": [
+          [
+            13,
+            14,
+            15,
+            17
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              2
+            ],
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              6,
+              7
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              13,
+              14,
+              15,
+              17
+            ]
+          ],
+          1,
+          3
+        ],
+        "expected": [
+          [
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              2
+            ],
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              6,
+              7
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              13,
+              14,
+              15,
+              17
+            ]
+          ],
+          0,
+          7
+        ],
+        "expected": [
+          [
+            2
+          ],
+          [
+            0
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 931,
+    "prompt": "Write a function to calculate the sum of series 1\u00b3+2\u00b3+3\u00b3+\u2026.+n\u00b3.",
+    "solution": "import math \r\ndef sum_series(number):\r\n total = 0\r\n total = math.pow((number * (number + 1)) /2, 2)\r\n return total",
+    "tests": [
+      {
+        "args": [
+          7
+        ],
+        "expected": 784
+      },
+      {
+        "args": [
+          5
+        ],
+        "expected": 225
+      },
+      {
+        "args": [
+          15
+        ],
+        "expected": 14400
+      }
+    ]
+  },
+  {
+    "task_id": 387,
+    "prompt": "Write a python function to check whether the hexadecimal number is even or odd.",
+    "solution": "def even_or_odd(N): \r\n    l = len(N) \r\n    if (N[l-1] =='0'or N[l-1] =='2'or \r\n        N[l-1] =='4'or N[l-1] =='6'or \r\n        N[l-1] =='8'or N[l-1] =='A'or \r\n        N[l-1] =='C'or N[l-1] =='E'): \r\n        return (\"Even\") \r\n    else: \r\n        return (\"Odd\") ",
+    "tests": [
+      {
+        "args": [
+          "AB3454D"
+        ],
+        "expected": "Odd"
+      },
+      {
+        "args": [
+          "ABC"
+        ],
+        "expected": "Even"
+      },
+      {
+        "args": [
+          "AAD"
+        ],
+        "expected": "Odd"
+      }
+    ]
+  },
+  {
+    "task_id": 447,
+    "prompt": "Write a function to find cubes of individual elements in a list using lambda function.",
+    "solution": "def cube_nums(nums):\r\n cube_nums = list(map(lambda x: x ** 3, nums))\r\n return cube_nums",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        ],
+        "expected": [
+          1,
+          8,
+          27,
+          64,
+          125,
+          216,
+          343,
+          512,
+          729,
+          1000
+        ]
+      },
+      {
+        "args": [
+          [
+            10,
+            20,
+            30
+          ]
+        ],
+        "expected": [
+          1000,
+          8000,
+          27000
+        ]
+      },
+      {
+        "args": [
+          [
+            12,
+            15
+          ]
+        ],
+        "expected": [
+          1728,
+          3375
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 605,
+    "prompt": "Write a function to check if the given integer is a prime number.",
+    "solution": "def prime_num(num):\r\n  if num >=1:\r\n   for i in range(2, num//2):\r\n     if (num % i) == 0:\r\n                return False\r\n     else:\r\n                return True\r\n  else:\r\n          return False",
+    "tests": [
+      {
+        "args": [
+          13
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          7
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          -1010
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 689,
+    "prompt": "## write a function to find the minimum number of jumps to reach the end of the array for the given array of integers where each element represents the max number of steps that can be made forward from that element. > indented block > indented block",
+    "solution": "def min_jumps(arr, n):\r\n\tjumps = [0 for i in range(n)]\r\n\tif (n == 0) or (arr[0] == 0):\r\n\t\treturn float('inf')\r\n\tjumps[0] = 0\r\n\tfor i in range(1, n):\r\n\t\tjumps[i] = float('inf')\r\n\t\tfor j in range(i):\r\n\t\t\tif (i <= j + arr[j]) and (jumps[j] != float('inf')):\r\n\t\t\t\tjumps[i] = min(jumps[i], jumps[j] + 1)\r\n\t\t\t\tbreak\r\n\treturn jumps[n-1]",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            3,
+            6,
+            1,
+            0,
+            9
+          ],
+          6
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            1,
+            3,
+            5,
+            8,
+            9,
+            2,
+            6,
+            7,
+            6,
+            8,
+            9
+          ],
+          11
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          11
+        ],
+        "expected": 10
+      }
+    ]
+  },
+  {
+    "task_id": 333,
+    "prompt": "Write a python function to sort a list according to the second element in sublist.",
+    "solution": "def Sort(sub_li): \r\n    sub_li.sort(key = lambda x: x[1]) \r\n    return sub_li ",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              "a",
+              10
+            ],
+            [
+              "b",
+              5
+            ],
+            [
+              "c",
+              20
+            ],
+            [
+              "d",
+              15
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            "b",
+            5
+          ],
+          [
+            "a",
+            10
+          ],
+          [
+            "d",
+            15
+          ],
+          [
+            "c",
+            20
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              "452",
+              10
+            ],
+            [
+              "256",
+              5
+            ],
+            [
+              "100",
+              20
+            ],
+            [
+              "135",
+              15
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            "256",
+            5
+          ],
+          [
+            "452",
+            10
+          ],
+          [
+            "135",
+            15
+          ],
+          [
+            "100",
+            20
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              "rishi",
+              10
+            ],
+            [
+              "akhil",
+              5
+            ],
+            [
+              "ramya",
+              20
+            ],
+            [
+              "gaur",
+              15
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            "akhil",
+            5
+          ],
+          [
+            "rishi",
+            10
+          ],
+          [
+            "gaur",
+            15
+          ],
+          [
+            "ramya",
+            20
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 13,
+    "prompt": "Write a function to count the most common words in a dictionary.",
+    "solution": "from collections import Counter\r\ndef count_common(words):\r\n  word_counts = Counter(words)\r\n  top_four = word_counts.most_common(4)\r\n  return (top_four)\r\n",
+    "tests": [
+      {
+        "args": [
+          [
+            "red",
+            "green",
+            "black",
+            "pink",
+            "black",
+            "white",
+            "black",
+            "eyes",
+            "white",
+            "black",
+            "orange",
+            "pink",
+            "pink",
+            "red",
+            "red",
+            "white",
+            "orange",
+            "white",
+            "black",
+            "pink",
+            "green",
+            "green",
+            "pink",
+            "green",
+            "pink",
+            "white",
+            "orange",
+            "orange",
+            "red"
+          ]
+        ],
+        "expected": [
+          [
+            "pink",
+            6
+          ],
+          [
+            "black",
+            5
+          ],
+          [
+            "white",
+            5
+          ],
+          [
+            "red",
+            4
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "one",
+            "two",
+            "one",
+            "three",
+            "one"
+          ]
+        ],
+        "expected": [
+          [
+            "one",
+            4
+          ],
+          [
+            "two",
+            2
+          ],
+          [
+            "three",
+            2
+          ],
+          [
+            "four",
+            1
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            "Facebook",
+            "Apple",
+            "Amazon",
+            "Netflix",
+            "Google",
+            "Apple",
+            "Netflix",
+            "Amazon"
+          ]
+        ],
+        "expected": [
+          [
+            "Apple",
+            2
+          ],
+          [
+            "Amazon",
+            2
+          ],
+          [
+            "Netflix",
+            2
+          ],
+          [
+            "Facebook",
+            1
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 577,
+    "prompt": "Write a python function to find the last digit in factorial of a given number.",
+    "solution": "def last_Digit_Factorial(n): \r\n    if (n == 0): return 1\r\n    elif (n <= 2): return n  \r\n    elif (n == 3): return 6\r\n    elif (n == 4): return 4 \r\n    else: \r\n      return 0",
+    "tests": [
+      {
+        "args": [
+          4
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          21
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          30
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "task_id": 454,
+    "prompt": "Write a function that matches a word containing 'z'.",
+    "solution": "import re\r\ndef text_match_wordz(text):\r\n        patterns = '\\w*z.\\w*'\r\n        if re.search(patterns,  text):\r\n                return 'Found a match!'\r\n        else:\r\n                return('Not matched!')",
+    "tests": [
+      {
+        "args": [
+          "pythonz."
+        ],
+        "expected": "Found a match!"
+      },
+      {
+        "args": [
+          "xyz."
+        ],
+        "expected": "Found a match!"
+      },
+      {
+        "args": [
+          "  lang  ."
+        ],
+        "expected": "Not matched!"
+      }
+    ]
+  },
+  {
+    "task_id": 626,
+    "prompt": "Write a python function to find the largest triangle that can be inscribed in the semicircle.",
+    "solution": "def triangle_area(r) :  \r\n    if r < 0 : \r\n        return -1\r\n    return r * r ",
+    "tests": [
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          -1
+        ],
+        "expected": -1
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "task_id": 303,
+    "prompt": "Write a python function to check whether the count of inversion of two types are same or not.",
+    "solution": "import sys \r\ndef solve(a,n):   \r\n    mx = -sys.maxsize - 1\r\n    for j in range(1,n):  \r\n        if (mx > a[j]):  \r\n            return False  \r\n        mx = max(mx,a[j - 1])    \r\n    return True",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            0,
+            2
+          ],
+          3
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            0
+          ],
+          3
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            1
+          ],
+          3
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": 831,
+    "prompt": "Write a python function to count equal element pairs from the given array.",
+    "solution": "def count_Pairs(arr,n): \r\n    cnt = 0; \r\n    for i in range(n): \r\n        for j in range(i + 1,n): \r\n            if (arr[i] == arr[j]): \r\n                cnt += 1; \r\n    return cnt; ",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          4
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          [
+            1,
+            5,
+            1
+          ],
+          3
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            3,
+            2,
+            1,
+            7,
+            8,
+            9
+          ],
+          6
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "task_id": 550,
+    "prompt": "Write a python function to find the maximum element in a sorted and rotated array.",
+    "solution": "def find_Max(arr,low,high): \r\n    if (high < low): \r\n        return arr[0] \r\n    if (high == low): \r\n        return arr[low] \r\n    mid = low + (high - low) // 2 \r\n    if (mid < high and arr[mid + 1] < arr[mid]): \r\n        return arr[mid] \r\n    if (mid > low and arr[mid] < arr[mid - 1]): \r\n        return arr[mid - 1]  \r\n    if (arr[low] > arr[mid]): \r\n        return find_Max(arr,low,mid - 1) \r\n    else: \r\n        return find_Max(arr,mid + 1,high) ",
+    "tests": [
+      {
+        "args": [
+          [
+            2,
+            3,
+            5,
+            6,
+            9
+          ],
+          0,
+          4
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          [
+            3,
+            4,
+            5,
+            2,
+            1
+          ],
+          0,
+          4
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          0,
+          2
+        ],
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "task_id": 687,
+    "prompt": "Write a function to find the greatest common divisor (gcd) of two integers by using recursion.",
+    "solution": "def recur_gcd(a, b):\r\n\tlow = min(a, b)\r\n\thigh = max(a, b)\r\n\tif low == 0:\r\n\t\treturn high\r\n\telif low == 1:\r\n\t\treturn 1\r\n\telse:\r\n\t\treturn recur_gcd(low, high%low)",
+    "tests": [
+      {
+        "args": [
+          12,
+          14
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          13,
+          17
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          9,
+          3
+        ],
+        "expected": 3
+      }
+    ]
+  },
+  {
+    "task_id": 241,
+    "prompt": "Write a function to generate a 3d array having each element as '*'.",
+    "solution": "def array_3d(m,n,o):\r\n array_3d = [[ ['*' for col in range(m)] for col in range(n)] for row in range(o)]\r\n return array_3d",
+    "tests": [
+      {
+        "args": [
+          6,
+          4,
+          3
+        ],
+        "expected": [
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ],
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ],
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ]
+        ]
+      },
+      {
+        "args": [
+          5,
+          3,
+          4
+        ],
+        "expected": [
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ],
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ],
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ],
+          [
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ]
+          ]
+        ]
+      },
+      {
+        "args": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          [
+            [
+              "*"
+            ],
+            [
+              "*"
+            ]
+          ],
+          [
+            [
+              "*"
+            ],
+            [
+              "*"
+            ]
+          ],
+          [
+            [
+              "*"
+            ],
+            [
+              "*"
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 759,
+    "prompt": "Write a function to check a decimal with a precision of 2.",
+    "solution": "def is_decimal(num):\r\n    import re\r\n    dnumre = re.compile(r\"\"\"^[0-9]+(\\.[0-9]{1,2})?$\"\"\")\r\n    result = dnumre.search(num)\r\n    return bool(result)",
+    "tests": [
+      {
+        "args": [
+          "123.11"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "e666.86"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "3.124587"
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 707,
+    "prompt": "Write a python function to count the total set bits from 1 to n.",
+    "solution": "def count_Set_Bits(n) :  \r\n    n += 1; \r\n    powerOf2 = 2;   \r\n    cnt = n // 2;  \r\n    while (powerOf2 <= n) : \r\n        totalPairs = n // powerOf2;  \r\n        cnt += (totalPairs // 2) * powerOf2;  \r\n        if (totalPairs & 1) : \r\n            cnt += (n % powerOf2) \r\n        else : \r\n            cnt += 0\r\n        powerOf2 <<= 1;    \r\n    return cnt;  ",
+    "tests": [
+      {
+        "args": [
+          16
+        ],
+        "expected": 33
+      },
+      {
+        "args": [
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          14
+        ],
+        "expected": 28
+      }
+    ]
+  },
+  {
+    "task_id": 291,
+    "prompt": "Write a function to find out the number of ways of painting the fence such that at most 2 adjacent posts have the same color for the given fence with n posts and k colors.",
+    "solution": "def count_no_of_ways(n, k): \r\n\tdp = [0] * (n + 1) \r\n\ttotal = k \r\n\tmod = 1000000007\r\n\tdp[1] = k \r\n\tdp[2] = k * k\t \r\n\tfor i in range(3,n+1): \r\n\t\tdp[i] = ((k - 1) * (dp[i - 1] + dp[i - 2])) % mod \r\n\treturn dp[n]",
+    "tests": [
+      {
+        "args": [
+          2,
+          4
+        ],
+        "expected": 16
+      },
+      {
+        "args": [
+          3,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          4,
+          4
+        ],
+        "expected": 228
+      }
+    ]
+  },
+  {
+    "task_id": 76,
+    "prompt": "Write a python function to count the number of squares in a rectangle.",
+    "solution": "def count_Squares(m,n):\r\n    if(n < m):\r\n        temp = m\r\n        m = n\r\n        n = temp\r\n    return ((m * (m + 1) * (2 * m + 1) / 6 + (n - m) * m * (m + 1) / 2))",
+    "tests": [
+      {
+        "args": [
+          4,
+          3
+        ],
+        "expected": 20
+      },
+      {
+        "args": [
+          2,
+          2
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          1,
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "task_id": 537,
+    "prompt": "Write a python function to find the first repeated word in a given string.",
+    "solution": "def first_repeated_word(str1):\r\n  temp = set()\r\n  for word in str1.split():\r\n    if word in temp:\r\n      return word;\r\n    else:\r\n      temp.add(word)\r\n  return 'None'",
+    "tests": [
+      {
+        "args": [
+          "ab ca bc ab"
+        ],
+        "expected": "ab"
+      },
+      {
+        "args": [
+          "ab ca bc"
+        ],
+        "expected": "None"
+      },
+      {
+        "args": [
+          "ab ca bc ca ab bc"
+        ],
+        "expected": "ca"
+      }
+    ]
+  },
+  {
+    "task_id": 127,
+    "prompt": "Write a function to multiply two integers without using the * operator in python.",
+    "solution": "def multiply_int(x, y):\r\n    if y < 0:\r\n        return -multiply_int(x, -y)\r\n    elif y == 0:\r\n        return 0\r\n    elif y == 1:\r\n        return x\r\n    else:\r\n        return x + multiply_int(x, y - 1)",
+    "tests": [
+      {
+        "args": [
+          10,
+          20
+        ],
+        "expected": 200
+      },
+      {
+        "args": [
+          5,
+          10
+        ],
+        "expected": 50
+      },
+      {
+        "args": [
+          4,
+          8
+        ],
+        "expected": 32
+      }
+    ]
+  },
+  {
+    "task_id": 5,
+    "prompt": "Write a function to find the number of ways to fill it with 2 x 1 dominoes for the given 3 x n board.",
+    "solution": "def count_ways(n): \r\n\tA = [0] * (n + 1) \r\n\tB = [0] * (n + 1) \r\n\tA[0] = 1\r\n\tA[1] = 0\r\n\tB[0] = 0\r\n\tB[1] = 1\r\n\tfor i in range(2, n+1): \r\n\t\tA[i] = A[i - 2] + 2 * B[i - 1] \r\n\t\tB[i] = A[i - 1] + B[i - 2] \r\n\treturn A[n] ",
+    "tests": [
+      {
+        "args": [
+          2
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          8
+        ],
+        "expected": 153
+      },
+      {
+        "args": [
+          12
+        ],
+        "expected": 2131
+      }
+    ]
+  },
+  {
+    "task_id": 896,
+    "prompt": "Write a function to sort a list in increasing order by the last element in each tuple from a given list of non-empty tuples.",
+    "solution": "def last(n):\r\n   return n[-1]\r\ndef sort_list_last(tuples):\r\n  return sorted(tuples, key=last)",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              2,
+              5
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              9,
+              8
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              7,
+              9
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              20,
+              50
+            ],
+            [
+              10,
+              20
+            ],
+            [
+              40,
+              40
+            ]
+          ]
+        ],
+        "expected": [
+          [
+            10,
+            20
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            20,
+            50
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 201,
+    "prompt": "Write a python function to check whether the elements in a list are same or not.",
+    "solution": "def chkList(lst): \r\n    return len(set(lst)) == 1",
+    "tests": [
+      {
+        "args": [
+          [
+            "one",
+            "one",
+            "one"
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            "one",
+            "Two",
+            "Three"
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            "bigdata",
+            "python",
+            "Django"
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 872,
+    "prompt": "Write a function to check if a nested list is a subset of another nested list.",
+    "solution": "def check_subset(list1,list2): \r\n    return all(map(list1.__contains__,list2)) ",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              3
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              13,
+              15,
+              17
+            ]
+          ],
+          [
+            [
+              1,
+              3
+            ],
+            [
+              13,
+              15,
+              17
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          [
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                7
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                3,
+                4
+              ],
+              [
+                5,
+                6
+              ]
+            ]
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 331,
+    "prompt": "Write a python function to count unset bits of a given number.",
+    "solution": "def count_unset_bits(n): \r\n    count = 0\r\n    x = 1\r\n    while(x < n + 1): \r\n        if ((x & n) == 0): \r\n            count += 1\r\n        x = x << 1\r\n    return count  ",
+    "tests": [
+      {
+        "args": [
+          2
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          4
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "task_id": 628,
+    "prompt": "Write a function to replace all spaces in the given string with character * list item * list item * list item * list item '%20'.",
+    "solution": "MAX=1000;\r\ndef replace_spaces(string):\r\n  string=string.strip()\r\n  i=len(string)\r\n  space_count=string.count(' ')\r\n  new_length = i + space_count*2\r\n  if new_length > MAX:\r\n    return -1\r\n  index = new_length-1\r\n  string=list(string)\r\n  for f in range(i-2, new_length-2):\r\n    string.append('0')\r\n  for j in range(i-1, 0, -1):\r\n    if string[j] == ' ':\r\n      string[index] = '0'\r\n      string[index-1] = '2'\r\n      string[index-2] = '%'\r\n      index=index-3\r\n    else:\r\n      string[index] = string[j]\r\n      index -= 1\r\n  return ''.join(string)",
+    "tests": [
+      {
+        "args": [
+          "My Name is Dawood"
+        ],
+        "expected": "My%20Name%20is%20Dawood"
+      },
+      {
+        "args": [
+          "I am a Programmer"
+        ],
+        "expected": "I%20am%20a%20Programmer"
+      },
+      {
+        "args": [
+          "I love Coding"
+        ],
+        "expected": "I%20love%20Coding"
+      }
+    ]
+  },
+  {
+    "task_id": 754,
+    "prompt": "Write a function to find common index elements from three lists.",
+    "solution": "def extract_index_list(l1, l2, l3):\r\n    result = []\r\n    for m, n, o in zip(l1, l2, l3):\r\n        if (m == n == o):\r\n            result.append(m)\r\n    return result",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+          ]
+        ],
+        "expected": [
+          1,
+          7
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            5
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            7
+          ]
+        ],
+        "expected": [
+          1,
+          6
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            3,
+            4,
+            6,
+            5,
+            6
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+          ]
+        ],
+        "expected": [
+          1,
+          5
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 24,
+    "prompt": "Write a function to convert the given binary number to its decimal equivalent.",
+    "solution": "def binary_to_decimal(binary): \r\n    binary1 = binary \r\n    decimal, i, n = 0, 0, 0\r\n    while(binary != 0): \r\n        dec = binary % 10\r\n        decimal = decimal + dec * pow(2, i) \r\n        binary = binary//10\r\n        i += 1\r\n    return (decimal)",
+    "tests": [
+      {
+        "args": [
+          100
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          1011
+        ],
+        "expected": 11
+      },
+      {
+        "args": [
+          1101101
+        ],
+        "expected": 109
+      }
+    ]
+  },
+  {
+    "task_id": 610,
+    "prompt": "Write a python function to remove the k'th element from a given list.",
+    "solution": "def remove_kth_element(list1, L):\r\n    return  list1[:L-1] + list1[L:]",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            1,
+            2,
+            3,
+            4,
+            4,
+            5,
+            1
+          ],
+          3
+        ],
+        "expected": [
+          1,
+          1,
+          3,
+          4,
+          4,
+          5,
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4,
+            4,
+            5,
+            6,
+            6,
+            6,
+            7,
+            8,
+            9,
+            4,
+            4
+          ],
+          4
+        ],
+        "expected": [
+          0,
+          0,
+          1,
+          3,
+          4,
+          4,
+          5,
+          6,
+          6,
+          6,
+          7,
+          8,
+          9,
+          4,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            10,
+            10,
+            15,
+            19,
+            18,
+            18,
+            17,
+            26,
+            26,
+            17,
+            18,
+            10
+          ],
+          5
+        ],
+        "expected": [
+          10,
+          10,
+          15,
+          19,
+          18,
+          17,
+          26,
+          26,
+          17,
+          18,
+          10
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 880,
+    "prompt": "Write a python function to find number of solutions in quadratic equation.",
+    "solution": "def Check_Solution(a,b,c) : \r\n    if ((b*b) - (4*a*c)) > 0 : \r\n        return (\"2 solutions\") \r\n    elif ((b*b) - (4*a*c)) == 0 : \r\n        return (\"1 solution\") \r\n    else : \r\n        return (\"No solutions\") ",
+    "tests": [
+      {
+        "args": [
+          2,
+          5,
+          2
+        ],
+        "expected": "2 solutions"
+      },
+      {
+        "args": [
+          1,
+          1,
+          1
+        ],
+        "expected": "No solutions"
+      },
+      {
+        "args": [
+          1,
+          2,
+          1
+        ],
+        "expected": "1 solution"
+      }
+    ]
+  },
+  {
+    "task_id": 133,
+    "prompt": "Write a function to calculate the sum of the negative numbers of a given list of numbers using lambda function.",
+    "solution": "def sum_negativenum(nums):\r\n  sum_negativenum = list(filter(lambda nums:nums<0,nums))\r\n  return sum(sum_negativenum)",
+    "tests": [
+      {
+        "args": [
+          [
+            2,
+            4,
+            -6,
+            -9,
+            11,
+            -12,
+            14,
+            -5,
+            17
+          ]
+        ],
+        "expected": -32
+      },
+      {
+        "args": [
+          [
+            10,
+            15,
+            -14,
+            13,
+            -18,
+            12,
+            -20
+          ]
+        ],
+        "expected": -52
+      },
+      {
+        "args": [
+          [
+            19,
+            -65,
+            57,
+            39,
+            152,
+            -639,
+            121,
+            44,
+            90,
+            -190
+          ]
+        ],
+        "expected": -894
+      }
+    ]
+  },
+  {
+    "task_id": 585,
+    "prompt": "Write a function to find the n - expensive price items from a given dataset using heap queue algorithm.",
+    "solution": "import heapq\r\ndef expensive_items(items,n):\r\n  expensive_items = heapq.nlargest(n, items, key=lambda s: s['price'])\r\n  return expensive_items",
+    "tests": [
+      {
+        "args": [
+          [
+            {
+              "name": "Item-1",
+              "price": 101.1
+            },
+            {
+              "name": "Item-2",
+              "price": 555.22
+            }
+          ],
+          1
+        ],
+        "expected": [
+          {
+            "name": "Item-2",
+            "price": 555.22
+          }
+        ]
+      },
+      {
+        "args": [
+          [
+            {
+              "name": "Item-1",
+              "price": 101.1
+            },
+            {
+              "name": "Item-2",
+              "price": 555.22
+            },
+            {
+              "name": "Item-3",
+              "price": 45.09
+            }
+          ],
+          2
+        ],
+        "expected": [
+          {
+            "name": "Item-2",
+            "price": 555.22
+          },
+          {
+            "name": "Item-1",
+            "price": 101.1
+          }
+        ]
+      },
+      {
+        "args": [
+          [
+            {
+              "name": "Item-1",
+              "price": 101.1
+            },
+            {
+              "name": "Item-2",
+              "price": 555.22
+            },
+            {
+              "name": "Item-3",
+              "price": 45.09
+            },
+            {
+              "name": "Item-4",
+              "price": 22.75
+            }
+          ],
+          1
+        ],
+        "expected": [
+          {
+            "name": "Item-2",
+            "price": 555.22
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 730,
+    "prompt": "Write a function to remove consecutive duplicates of a given list.",
+    "solution": "from itertools import groupby\r\ndef consecutive_duplicates(nums):\r\n    return [key for key, group in groupby(nums)] ",
+    "tests": [
+      {
+        "args": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4,
+            4,
+            5,
+            6,
+            6,
+            6,
+            7,
+            8,
+            9,
+            4,
+            4
+          ]
+        ],
+        "expected": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            10,
+            10,
+            15,
+            19,
+            18,
+            18,
+            17,
+            26,
+            26,
+            17,
+            18,
+            10
+          ]
+        ],
+        "expected": [
+          10,
+          15,
+          19,
+          18,
+          17,
+          26,
+          17,
+          18,
+          10
+        ]
+      },
+      {
+        "args": [
+          [
+            "a",
+            "a",
+            "b",
+            "c",
+            "d",
+            "d"
+          ]
+        ],
+        "expected": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 813,
+    "prompt": "Write a function to find length of the string.",
+    "solution": "def string_length(str1):\r\n    count = 0\r\n    for char in str1:\r\n        count += 1\r\n    return count",
+    "tests": [
+      {
+        "args": [
+          "python"
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          "program"
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          "language"
+        ],
+        "expected": 8
+      }
+    ]
+  },
+  {
+    "task_id": 540,
+    "prompt": "Write a python function to find the difference between highest and least frequencies in a given array.",
+    "solution": "def find_Diff(arr,n): \r\n    arr.sort()  \r\n    count = 0; max_count = 0; min_count = n \r\n    for i in range(0,(n-1)): \r\n        if arr[i] == arr[i + 1]: \r\n            count += 1\r\n            continue\r\n        else: \r\n            max_count = max(max_count,count) \r\n            min_count = min(min_count,count) \r\n            count = 0\r\n    return max_count - min_count ",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            1,
+            2,
+            2,
+            7,
+            8,
+            4,
+            5,
+            1,
+            4
+          ],
+          10
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            1,
+            7,
+            9,
+            2,
+            3,
+            3,
+            1,
+            3,
+            3
+          ],
+          9
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          4
+        ],
+        "expected": 0
+      }
+    ]
+  },
+  {
+    "task_id": 21,
+    "prompt": "Write a function to find m number of multiples of n.",
+    "solution": "def multiples_of_num(m,n): \r\n    multiples_of_num= list(range(n,(m+1)*n, n)) \r\n    return list(multiples_of_num)",
+    "tests": [
+      {
+        "args": [
+          4,
+          3
+        ],
+        "expected": [
+          3,
+          6,
+          9,
+          12
+        ]
+      },
+      {
+        "args": [
+          2,
+          5
+        ],
+        "expected": [
+          5,
+          10
+        ]
+      },
+      {
+        "args": [
+          9,
+          2
+        ],
+        "expected": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 48,
+    "prompt": "Write a python function to set all odd bits of a given number.",
+    "solution": "def odd_bit_set_number(n):\r\n    count = 0;res = 0;temp = n\r\n    while temp > 0:\r\n        if count % 2 == 0:\r\n            res |= (1 << count)\r\n        count += 1\r\n        temp >>= 1\r\n    return (n | res)",
+    "tests": [
+      {
+        "args": [
+          10
+        ],
+        "expected": 15
+      },
+      {
+        "args": [
+          20
+        ],
+        "expected": 21
+      },
+      {
+        "args": [
+          30
+        ],
+        "expected": 31
+      }
+    ]
+  },
+  {
+    "task_id": 351,
+    "prompt": "Write a python function to find the first element occurring k times in a given array.",
+    "solution": "def first_Element(arr,n,k): \r\n    count_map = {}; \r\n    for i in range(0, n): \r\n        if(arr[i] in count_map.keys()): \r\n            count_map[arr[i]] += 1\r\n        else: \r\n            count_map[arr[i]] = 1\r\n        i += 1\r\n    for i in range(0, n):  \r\n        if (count_map[arr[i]] == k): \r\n            return arr[i] \r\n        i += 1 \r\n    return -1",
+    "tests": [
+      {
+        "args": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          6,
+          1
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            1,
+            3,
+            4
+          ],
+          5,
+          2
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            2,
+            3,
+            4,
+            3,
+            5,
+            7,
+            1,
+            2,
+            3,
+            5
+          ],
+          10,
+          2
+        ],
+        "expected": 2
+      }
+    ]
+  },
+  {
+    "task_id": 673,
+    "prompt": "Write a python function to convert a list of multiple integers into a single integer.",
+    "solution": "def convert(list): \r\n    s = [str(i) for i in list] \r\n    res = int(\"\".join(s))  \r\n    return (res) ",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 123
+      },
+      {
+        "args": [
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "expected": 456
+      },
+      {
+        "args": [
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "expected": 789
+      }
+    ]
+  },
+  {
+    "task_id": 56,
+    "prompt": "Write a python function to check if a given number is one less than twice its reverse.",
+    "solution": "def rev(num):    \r\n    rev_num = 0\r\n    while (num > 0):  \r\n        rev_num = (rev_num * 10 + num % 10) \r\n        num = num // 10  \r\n    return rev_num  \r\ndef check(n):    \r\n    return (2 * rev(n) == n + 1)  ",
+    "tests": [
+      {
+        "args": [
+          70
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          23
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          73
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": 492,
+    "prompt": "Write a function to search an element in the given array by using binary search.",
+    "solution": "def binary_search(item_list,item):\r\n\tfirst = 0\r\n\tlast = len(item_list)-1\r\n\tfound = False\r\n\twhile( first<=last and not found):\r\n\t\tmid = (first + last)//2\r\n\t\tif item_list[mid] == item :\r\n\t\t\tfound = True\r\n\t\telse:\r\n\t\t\tif item < item_list[mid]:\r\n\t\t\t\tlast = mid - 1\r\n\t\t\telse:\r\n\t\t\t\tfirst = mid + 1\t\r\n\treturn found",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            5,
+            8
+          ],
+          6
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            7,
+            8,
+            9,
+            10,
+            13
+          ],
+          10
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            11,
+            13,
+            14,
+            19,
+            22,
+            36
+          ],
+          23
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 922,
+    "prompt": "Write a function to find a pair with the highest product from a given array of integers.",
+    "solution": "def max_product(arr): \r\n    arr_len = len(arr) \r\n    if (arr_len < 2): \r\n        return None     \r\n    x = arr[0]; y = arr[1]    \r\n    for i in range(0, arr_len): \r\n        for j in range(i + 1, arr_len): \r\n            if (arr[i] * arr[j] > x * y): \r\n                x = arr[i]; y = arr[j] \r\n    return x,y   ",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            7,
+            0,
+            8,
+            4
+          ]
+        ],
+        "expected": [
+          7,
+          8
+        ]
+      },
+      {
+        "args": [
+          [
+            0,
+            -1,
+            -2,
+            -4,
+            5,
+            0,
+            -6
+          ]
+        ],
+        "expected": [
+          -4,
+          -6
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            3,
+            5,
+            6,
+            8,
+            9
+          ]
+        ],
+        "expected": [
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 410,
+    "prompt": "Write a function to find the minimum value in a given heterogeneous list.",
+    "solution": "def min_val(listval):\r\n     min_val = min(i for i in listval if isinstance(i, int))\r\n     return min_val",
+    "tests": [
+      {
+        "args": [
+          [
+            "Python",
+            3,
+            2,
+            4,
+            5,
+            "version"
+          ]
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            "Python",
+            15,
+            20,
+            25
+          ]
+        ],
+        "expected": 15
+      },
+      {
+        "args": [
+          [
+            "Python",
+            30,
+            20,
+            40,
+            50,
+            "version"
+          ]
+        ],
+        "expected": 20
+      }
+    ]
+  },
+  {
+    "task_id": 244,
+    "prompt": "Write a python function to find the next perfect square greater than a given number.",
+    "solution": "import math  \r\ndef next_Perfect_Square(N): \r\n    nextN = math.floor(math.sqrt(N)) + 1\r\n    return nextN * nextN ",
+    "tests": [
+      {
+        "args": [
+          35
+        ],
+        "expected": 36
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": 9
+      },
+      {
+        "args": [
+          9
+        ],
+        "expected": 16
+      }
+    ]
+  },
+  {
+    "task_id": 343,
+    "prompt": "Write a function to calculate the number of digits and letters in a string.",
+    "solution": "def dig_let(s):\r\n d=l=0\r\n for c in s:\r\n    if c.isdigit():\r\n        d=d+1\r\n    elif c.isalpha():\r\n        l=l+1\r\n    else:\r\n        pass\r\n return (l,d)",
+    "tests": [
+      {
+        "args": [
+          "python"
+        ],
+        "expected": [
+          6,
+          0
+        ]
+      },
+      {
+        "args": [
+          "program"
+        ],
+        "expected": [
+          7,
+          0
+        ]
+      },
+      {
+        "args": [
+          "python3.0"
+        ],
+        "expected": [
+          6,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 78,
+    "prompt": "Write a python function to find number of integers with odd number of set bits.",
+    "solution": "def count_With_Odd_SetBits(n): \r\n    if (n % 2 != 0): \r\n        return (n + 1) / 2\r\n    count = bin(n).count('1') \r\n    ans = n / 2\r\n    if (count % 2 != 0): \r\n        ans += 1\r\n    return ans ",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": 3
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          15
+        ],
+        "expected": 8
+      }
+    ]
+  },
+  {
+    "task_id": 624,
+    "prompt": "Write a python function to convert the given string to upper case.",
+    "solution": "def is_upper(string):\r\n  return (string.upper())",
+    "tests": [
+      {
+        "args": [
+          "person"
+        ],
+        "expected": "PERSON"
+      },
+      {
+        "args": [
+          "final"
+        ],
+        "expected": "FINAL"
+      },
+      {
+        "args": [
+          "Valid"
+        ],
+        "expected": "VALID"
+      }
+    ]
+  },
+  {
+    "task_id": 538,
+    "prompt": "Write a python function to convert a given string list to a tuple.",
+    "solution": "def string_list_to_tuple(str1):\r\n    result = tuple(x for x in str1 if not x.isspace()) \r\n    return result",
+    "tests": [
+      {
+        "args": [
+          "python 3.0"
+        ],
+        "expected": [
+          "p",
+          "y",
+          "t",
+          "h",
+          "o",
+          "n",
+          "3",
+          ".",
+          "0"
+        ]
+      },
+      {
+        "args": [
+          "bigdata"
+        ],
+        "expected": [
+          "b",
+          "i",
+          "g",
+          "d",
+          "a",
+          "t",
+          "a"
+        ]
+      },
+      {
+        "args": [
+          "language"
+        ],
+        "expected": [
+          "l",
+          "a",
+          "n",
+          "g",
+          "u",
+          "a",
+          "g",
+          "e"
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 434,
+    "prompt": "Write a function that matches a string that has an a followed by one or more b's.",
+    "solution": "import re\r\ndef text_match_one(text):\r\n        patterns = 'ab+?'\r\n        if re.search(patterns,  text):\r\n                return 'Found a match!'\r\n        else:\r\n                return('Not matched!')\r\n",
+    "tests": [
+      {
+        "args": [
+          "ac"
+        ],
+        "expected": "Not matched!"
+      },
+      {
+        "args": [
+          "dc"
+        ],
+        "expected": "Not matched!"
+      },
+      {
+        "args": [
+          "abba"
+        ],
+        "expected": "Found a match!"
+      }
+    ]
+  },
+  {
+    "task_id": 877,
+    "prompt": "Write a python function to sort the given string.",
+    "solution": "def sort_String(str) : \r\n    str = ''.join(sorted(str)) \r\n    return (str) ",
+    "tests": [
+      {
+        "args": [
+          "cba"
+        ],
+        "expected": "abc"
+      },
+      {
+        "args": [
+          "data"
+        ],
+        "expected": "aadt"
+      },
+      {
+        "args": [
+          "zxy"
+        ],
+        "expected": "xyz"
+      }
+    ]
+  },
+  {
+    "task_id": 961,
+    "prompt": "Write a function to convert a roman numeral to an integer.",
+    "solution": "def roman_to_int(s):\r\n        rom_val = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\r\n        int_val = 0\r\n        for i in range(len(s)):\r\n            if i > 0 and rom_val[s[i]] > rom_val[s[i - 1]]:\r\n                int_val += rom_val[s[i]] - 2 * rom_val[s[i - 1]]\r\n            else:\r\n                int_val += rom_val[s[i]]\r\n        return int_val",
+    "tests": [
+      {
+        "args": [
+          "MMMCMLXXXVI"
+        ],
+        "expected": 3986
+      },
+      {
+        "args": [
+          "MMMM"
+        ],
+        "expected": 4000
+      },
+      {
+        "args": [
+          "C"
+        ],
+        "expected": 100
+      }
+    ]
+  },
+  {
+    "task_id": 428,
+    "prompt": "Write a function to sort the given array by using shell sort.",
+    "solution": "def shell_sort(my_list):\r\n    gap = len(my_list) // 2\r\n    while gap > 0:\r\n        for i in range(gap, len(my_list)):\r\n            current_item = my_list[i]\r\n            j = i\r\n            while j >= gap and my_list[j - gap] > current_item:\r\n                my_list[j] = my_list[j - gap]\r\n                j -= gap\r\n            my_list[j] = current_item\r\n        gap //= 2\r\n\r\n    return my_list",
+    "tests": [
+      {
+        "args": [
+          [
+            12,
+            23,
+            4,
+            5,
+            3,
+            2,
+            12,
+            81,
+            56,
+            95
+          ]
+        ],
+        "expected": [
+          2,
+          3,
+          4,
+          5,
+          12,
+          12,
+          23,
+          56,
+          81,
+          95
+        ]
+      },
+      {
+        "args": [
+          [
+            24,
+            22,
+            39,
+            34,
+            87,
+            73,
+            68
+          ]
+        ],
+        "expected": [
+          22,
+          24,
+          34,
+          39,
+          68,
+          73,
+          87
+        ]
+      },
+      {
+        "args": [
+          [
+            32,
+            30,
+            16,
+            96,
+            82,
+            83,
+            74
+          ]
+        ],
+        "expected": [
+          16,
+          30,
+          32,
+          74,
+          82,
+          83,
+          96
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 60,
+    "prompt": "Write a function to find the maximum length of the subsequence with difference between adjacent elements for the given array.",
+    "solution": "def max_len_sub( arr, n): \r\n\tmls=[] \r\n\tmax = 0\r\n\tfor i in range(n): \r\n\t\tmls.append(1) \r\n\tfor i in range(n): \r\n\t\tfor j in range(i): \r\n\t\t\tif (abs(arr[i] - arr[j]) <= 1 and mls[i] < mls[j] + 1): \r\n\t\t\t\tmls[i] = mls[j] + 1\r\n\tfor i in range(n): \r\n\t\tif (max < mls[i]): \r\n\t\t\tmax = mls[i] \r\n\treturn max",
+    "tests": [
+      {
+        "args": [
+          [
+            2,
+            5,
+            6,
+            3,
+            7,
+            6,
+            5,
+            8
+          ],
+          8
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          [
+            -2,
+            -1,
+            5,
+            -1,
+            4,
+            0,
+            3
+          ],
+          7
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          [
+            9,
+            11,
+            13,
+            15,
+            18
+          ],
+          5
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "task_id": 641,
+    "prompt": "Write a function to find the nth nonagonal number.",
+    "solution": "def is_nonagonal(n): \r\n\treturn int(n * (7 * n - 5) / 2) ",
+    "tests": [
+      {
+        "args": [
+          10
+        ],
+        "expected": 325
+      },
+      {
+        "args": [
+          15
+        ],
+        "expected": 750
+      },
+      {
+        "args": [
+          18
+        ],
+        "expected": 1089
+      }
+    ]
+  },
+  {
+    "task_id": 231,
+    "prompt": "Write a function to find the maximum sum in the given right triangle of numbers.",
+    "solution": "def max_sum(tri, n): \r\n\tif n > 1: \r\n\t\ttri[1][1] = tri[1][1]+tri[0][0] \r\n\t\ttri[1][0] = tri[1][0]+tri[0][0] \r\n\tfor i in range(2, n): \r\n\t\ttri[i][0] = tri[i][0] + tri[i-1][0] \r\n\t\ttri[i][i] = tri[i][i] + tri[i-1][i-1] \r\n\t\tfor j in range(1, i): \r\n\t\t\tif tri[i][j]+tri[i-1][j-1] >= tri[i][j]+tri[i-1][j]: \r\n\t\t\t\ttri[i][j] = tri[i][j] + tri[i-1][j-1] \r\n\t\t\telse: \r\n\t\t\t\ttri[i][j] = tri[i][j]+tri[i-1][j] \r\n\treturn (max(tri[n-1]))",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              3,
+              2
+            ]
+          ],
+          3
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              1,
+              12
+            ]
+          ],
+          3
+        ],
+        "expected": 15
+      },
+      {
+        "args": [
+          [
+            [
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              13,
+              23,
+              12
+            ]
+          ],
+          3
+        ],
+        "expected": 28
+      }
+    ]
+  },
+  {
+    "task_id": 128,
+    "prompt": "Write a function to shortlist words that are longer than n from a given list of words.",
+    "solution": "def long_words(n, str):\r\n    word_len = []\r\n    txt = str.split(\" \")\r\n    for x in txt:\r\n        if len(x) > n:\r\n            word_len.append(x)\r\n    return word_len\t",
+    "tests": [
+      {
+        "args": [
+          3,
+          "python is a programming language"
+        ],
+        "expected": [
+          "python",
+          "programming",
+          "language"
+        ]
+      },
+      {
+        "args": [
+          2,
+          "writing a program"
+        ],
+        "expected": [
+          "writing",
+          "program"
+        ]
+      },
+      {
+        "args": [
+          5,
+          "sorting list"
+        ],
+        "expected": [
+          "sorting"
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 229,
+    "prompt": "Write a function to re-arrange the elements of the given array so that all negative elements appear before positive ones.",
+    "solution": "def re_arrange_array(arr, n):\r\n  j=0\r\n  for i in range(0, n):\r\n    if (arr[i] < 0):\r\n      temp = arr[i]\r\n      arr[i] = arr[j]\r\n      arr[j] = temp\r\n      j = j + 1\r\n  return arr",
+    "tests": [
+      {
+        "args": [
+          [
+            -1,
+            2,
+            -3,
+            4,
+            5,
+            6,
+            -7,
+            8,
+            9
+          ],
+          9
+        ],
+        "expected": [
+          -1,
+          -3,
+          -7,
+          4,
+          5,
+          6,
+          2,
+          8,
+          9
+        ]
+      },
+      {
+        "args": [
+          [
+            12,
+            -14,
+            -26,
+            13,
+            15
+          ],
+          5
+        ],
+        "expected": [
+          -14,
+          -26,
+          12,
+          13,
+          15
+        ]
+      },
+      {
+        "args": [
+          [
+            10,
+            24,
+            36,
+            -42,
+            -39,
+            -78,
+            85
+          ],
+          7
+        ],
+        "expected": [
+          -42,
+          -39,
+          -78,
+          10,
+          24,
+          36,
+          85
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 175,
+    "prompt": "Write a function to verify validity of a string of parentheses.",
+    "solution": "def is_valid_parenthese( str1):\r\n        stack, pchar = [], {\"(\": \")\", \"{\": \"}\", \"[\": \"]\"}\r\n        for parenthese in str1:\r\n            if parenthese in pchar:\r\n                stack.append(parenthese)\r\n            elif len(stack) == 0 or pchar[stack.pop()] != parenthese:\r\n                return False\r\n        return len(stack) == 0",
+    "tests": [
+      {
+        "args": [
+          "(){}[]"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "()[{)}"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "()"
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": 522,
+    "prompt": "Write a function to find the longest bitonic subsequence for the given array.",
+    "solution": "def lbs(arr): \r\n\tn = len(arr) \r\n\tlis = [1 for i in range(n+1)] \r\n\tfor i in range(1 , n): \r\n\t\tfor j in range(0 , i): \r\n\t\t\tif ((arr[i] > arr[j]) and (lis[i] < lis[j] +1)): \r\n\t\t\t\tlis[i] = lis[j] + 1\r\n\tlds = [1 for i in range(n+1)] \r\n\tfor i in reversed(range(n-1)): \r\n\t\tfor j in reversed(range(i-1 ,n)): \r\n\t\t\tif(arr[i] > arr[j] and lds[i] < lds[j] + 1): \r\n\t\t\t\tlds[i] = lds[j] + 1\r\n\tmaximum = lis[0] + lds[0] - 1\r\n\tfor i in range(1 , n): \r\n\t\tmaximum = max((lis[i] + lds[i]-1), maximum) \r\n\treturn maximum",
+    "tests": [
+      {
+        "args": [
+          [
+            0,
+            8,
+            4,
+            12,
+            2,
+            10,
+            6,
+            14,
+            1,
+            9,
+            5,
+            13,
+            3,
+            11,
+            7,
+            15
+          ]
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          [
+            1,
+            11,
+            2,
+            10,
+            4,
+            5,
+            2,
+            1
+          ]
+        ],
+        "expected": 6
+      },
+      {
+        "args": [
+          [
+            80,
+            60,
+            30,
+            40,
+            20,
+            10
+          ]
+        ],
+        "expected": 5
+      }
+    ]
+  },
+  {
+    "task_id": 169,
+    "prompt": "Write a function to calculate the nth pell number.",
+    "solution": "def get_pell(n): \r\n\tif (n <= 2): \r\n\t\treturn n \r\n\ta = 1\r\n\tb = 2\r\n\tfor i in range(3, n+1): \r\n\t\tc = 2 * b + a \r\n\t\ta = b \r\n\t\tb = c \r\n\treturn b ",
+    "tests": [
+      {
+        "args": [
+          4
+        ],
+        "expected": 12
+      },
+      {
+        "args": [
+          7
+        ],
+        "expected": 169
+      },
+      {
+        "args": [
+          8
+        ],
+        "expected": 408
+      }
+    ]
+  },
+  {
+    "task_id": 52,
+    "prompt": "Write a function to caluclate area of a parallelogram.",
+    "solution": "def parallelogram_area(b,h):\r\n  area=b*h\r\n  return area",
+    "tests": [
+      {
+        "args": [
+          10,
+          20
+        ],
+        "expected": 200
+      },
+      {
+        "args": [
+          15,
+          20
+        ],
+        "expected": 300
+      },
+      {
+        "args": [
+          8,
+          9
+        ],
+        "expected": 72
+      }
+    ]
+  },
+  {
+    "task_id": 88,
+    "prompt": "Write a function to get the frequency of the elements in a list.",
+    "solution": "import collections\r\ndef freq_count(list1):\r\n  freq_count= collections.Counter(list1)\r\n  return freq_count",
+    "tests": [
+      {
+        "args": [
+          [
+            10,
+            10,
+            10,
+            10,
+            20,
+            20,
+            20,
+            20,
+            40,
+            40,
+            50,
+            50,
+            30
+          ]
+        ],
+        "expected": {
+          "10": 4,
+          "20": 4,
+          "40": 2,
+          "50": 2,
+          "30": 1
+        }
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            3,
+            2,
+            4,
+            1,
+            3,
+            1,
+            4
+          ]
+        ],
+        "expected": {
+          "1": 3,
+          "2": 2,
+          "3": 3,
+          "4": 3
+        }
+      },
+      {
+        "args": [
+          [
+            5,
+            6,
+            7,
+            4,
+            9,
+            10,
+            4,
+            5,
+            6,
+            7,
+            9,
+            5
+          ]
+        ],
+        "expected": {
+          "10": 1,
+          "5": 3,
+          "6": 2,
+          "7": 2,
+          "4": 2,
+          "9": 2
+        }
+      }
+    ]
+  },
+  {
+    "task_id": 185,
+    "prompt": "Write a function to find the focus of a parabola.",
+    "solution": "def parabola_focus(a, b, c): \r\n  focus= (((-b / (2 * a)),(((4 * a * c) - (b * b) + 1) / (4 * a))))\r\n  return focus",
+    "tests": [
+      {
+        "args": [
+          5,
+          3,
+          2
+        ],
+        "expected": [
+          -0.3,
+          1.6
+        ]
+      },
+      {
+        "args": [
+          9,
+          8,
+          4
+        ],
+        "expected": [
+          -0.4444444444444444,
+          2.25
+        ]
+      },
+      {
+        "args": [
+          2,
+          4,
+          6
+        ],
+        "expected": [
+          -1.0,
+          4.125
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 803,
+    "prompt": "Write a python function to check whether the given number is a perfect square or not.",
+    "solution": "def is_Perfect_Square(n) :\r\n    i = 1\r\n    while (i * i<= n):\r\n        if ((n % i == 0) and (n / i == i)):\r\n            return True     \r\n        i = i + 1\r\n    return False",
+    "tests": [
+      {
+        "args": [
+          10
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          36
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          14
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 775,
+    "prompt": "Write a python function to check whether every odd index contains odd numbers of a given list.",
+    "solution": "def odd_position(nums):\r\n\treturn all(nums[i]%2==i%2 for i in range(len(nums)))",
+    "tests": [
+      {
+        "args": [
+          [
+            2,
+            1,
+            4,
+            3,
+            6,
+            7,
+            6,
+            3
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            4,
+            1,
+            2
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 74,
+    "prompt": "Write a function to check whether it follows the sequence given in the patterns array.",
+    "solution": "def is_samepatterns(colors, patterns):    \r\n    if len(colors) != len(patterns):\r\n        return False    \r\n    sdict = {}\r\n    pset = set()\r\n    sset = set()    \r\n    for i in range(len(patterns)):\r\n        pset.add(patterns[i])\r\n        sset.add(colors[i])\r\n        if patterns[i] not in sdict.keys():\r\n            sdict[patterns[i]] = []\r\n\r\n        keys = sdict[patterns[i]]\r\n        keys.append(colors[i])\r\n        sdict[patterns[i]] = keys\r\n\r\n    if len(pset) != len(sset):\r\n        return False   \r\n\r\n    for values in sdict.values():\r\n\r\n        for i in range(len(values) - 1):\r\n            if values[i] != values[i+1]:\r\n                return False\r\n\r\n    return True",
+    "tests": [
+      {
+        "args": [
+          [
+            "red",
+            "green",
+            "green"
+          ],
+          [
+            "a",
+            "b",
+            "b"
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            "red",
+            "green",
+            "greenn"
+          ],
+          [
+            "a",
+            "b",
+            "b"
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            "red",
+            "green",
+            "greenn"
+          ],
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 778,
+    "prompt": "Write a function to pack consecutive duplicates of a given list elements into sublists.",
+    "solution": "from itertools import groupby\r\ndef pack_consecutive_duplicates(list1):\r\n    return [list(group) for key, group in groupby(list1)]",
+    "tests": [
+      {
+        "args": [
+          [
+            0,
+            0,
+            1,
+            2,
+            3,
+            4,
+            4,
+            5,
+            6,
+            6,
+            6,
+            7,
+            8,
+            9,
+            4,
+            4
+          ]
+        ],
+        "expected": [
+          [
+            0,
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6,
+            6,
+            6
+          ],
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            10,
+            10,
+            15,
+            19,
+            18,
+            18,
+            17,
+            26,
+            26,
+            17,
+            18,
+            10
+          ]
+        ],
+        "expected": [
+          [
+            10,
+            10
+          ],
+          [
+            15
+          ],
+          [
+            19
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            17
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            17
+          ],
+          [
+            18
+          ],
+          [
+            10
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            "a",
+            "a",
+            "b",
+            "c",
+            "d",
+            "d"
+          ]
+        ],
+        "expected": [
+          [
+            "a",
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d",
+            "d"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 472,
+    "prompt": "Write a python function to check whether the given list contains consecutive numbers or not.",
+    "solution": "def check_Consecutive(l): \r\n    return sorted(l) == list(range(min(l),max(l)+1)) ",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            5,
+            6
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 852,
+    "prompt": "Write a python function to remove negative numbers from a list.",
+    "solution": "def remove_negs(num_list): \r\n    for item in num_list: \r\n        if item < 0: \r\n           num_list.remove(item) \r\n    return num_list",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            -2,
+            3,
+            -4
+          ]
+        ],
+        "expected": [
+          1,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            -4
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            4,
+            5,
+            -6,
+            7,
+            -8
+          ]
+        ],
+        "expected": [
+          4,
+          5,
+          7
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 134,
+    "prompt": "Write a python function to check whether the last element of given array is even or odd after performing an operation p times.",
+    "solution": "def check_last (arr,n,p): \r\n    _sum = 0\r\n    for i in range(n): \r\n        _sum = _sum + arr[i] \r\n    if p == 1: \r\n        if _sum % 2 == 0: \r\n            return \"ODD\"\r\n        else: \r\n            return \"EVEN\"\r\n    return \"EVEN\"\r\n      ",
+    "tests": [
+      {
+        "args": [
+          [
+            5,
+            7,
+            10
+          ],
+          3,
+          1
+        ],
+        "expected": "ODD"
+      },
+      {
+        "args": [
+          [
+            2,
+            3
+          ],
+          2,
+          3
+        ],
+        "expected": "EVEN"
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          3,
+          1
+        ],
+        "expected": "ODD"
+      }
+    ]
+  },
+  {
+    "task_id": 691,
+    "prompt": "Write a function to group the 1st elements on the basis of 2nd elements in the given tuple list.",
+    "solution": "from itertools import groupby \r\ndef group_element(test_list):\r\n  res = dict()\r\n  for key, val in groupby(sorted(test_list, key = lambda ele: ele[1]), key = lambda ele: ele[1]):\r\n    res[key] = [ele[0] for ele in val] \r\n  return (res)\r\n",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              6,
+              5
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              3,
+              7
+            ]
+          ]
+        ],
+        "expected": {
+          "5": [
+            6,
+            2
+          ],
+          "7": [
+            2,
+            8,
+            3
+          ],
+          "8": [
+            9
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              7,
+              6
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        ],
+        "expected": {
+          "6": [
+            7,
+            3
+          ],
+          "8": [
+            3,
+            9,
+            4
+          ],
+          "9": [
+            10
+          ]
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              8,
+              7
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              11,
+              10
+            ],
+            [
+              5,
+              9
+            ]
+          ]
+        ],
+        "expected": {
+          "7": [
+            8,
+            4
+          ],
+          "9": [
+            4,
+            10,
+            5
+          ],
+          "10": [
+            11
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "task_id": 861,
+    "prompt": "Write a function to find all anagrams of a string in a given list of strings using lambda function.",
+    "solution": "from collections import Counter \r\ndef anagram_lambda(texts,str):\r\n  result = list(filter(lambda x: (Counter(str) == Counter(x)), texts)) \r\n  return result",
+    "tests": [
+      {
+        "args": [
+          [
+            "bcda",
+            "abce",
+            "cbda",
+            "cbea",
+            "adcb"
+          ],
+          "abcd"
+        ],
+        "expected": [
+          "bcda",
+          "cbda",
+          "adcb"
+        ]
+      },
+      {
+        "args": [
+          [
+            "recitals",
+            " python"
+          ],
+          "articles"
+        ],
+        "expected": [
+          "recitals"
+        ]
+      },
+      {
+        "args": [
+          [
+            " keep",
+            " abcdef",
+            " xyz"
+          ],
+          " peek"
+        ],
+        "expected": [
+          " keep"
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 233,
+    "prompt": "Write a function to find the lateral surface area of a cylinder.",
+    "solution": "def lateralsuface_cylinder(r,h):\r\n  lateralsurface= 2*3.1415*r*h\r\n  return lateralsurface",
+    "tests": [
+      {
+        "args": [
+          10,
+          5
+        ],
+        "expected": 314.15000000000003
+      },
+      {
+        "args": [
+          4,
+          5
+        ],
+        "expected": 125.66000000000001
+      },
+      {
+        "args": [
+          4,
+          10
+        ],
+        "expected": 251.32000000000002
+      }
+    ]
+  },
+  {
+    "task_id": 680,
+    "prompt": "Write a python function to check whether a sequence of numbers has an increasing trend or not.",
+    "solution": "def increasing_trend(nums):\r\n    if (sorted(nums)== nums):\r\n        return True\r\n    else:\r\n        return False",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            4,
+            3,
+            2,
+            1
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            0,
+            1,
+            4,
+            9
+          ]
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": 593,
+    "prompt": "Write a function to remove leading zeroes from an ip address.",
+    "solution": "import re\r\ndef removezero_ip(ip):\r\n string = re.sub('\\.[0]*', '.', ip)\r\n return string\r",
+    "tests": [
+      {
+        "args": [
+          "216.08.094.196"
+        ],
+        "expected": "216.8.94.196"
+      },
+      {
+        "args": [
+          "12.01.024"
+        ],
+        "expected": "12.1.24"
+      },
+      {
+        "args": [
+          "216.08.094.0196"
+        ],
+        "expected": "216.8.94.196"
+      }
+    ]
+  },
+  {
+    "task_id": 913,
+    "prompt": "Write a function to check for a number at the end of a string.",
+    "solution": "import re\r\ndef end_num(string):\r\n    text = re.compile(r\".*[0-9]$\")\r\n    if text.match(string):\r\n        return True\r\n    else:\r\n        return False",
+    "tests": [
+      {
+        "args": [
+          "abcdef"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "abcdef7"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "abc"
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 849,
+    "prompt": "Write a python function to find sum of all prime divisors of a given number.",
+    "solution": "def Sum(N): \r\n    SumOfPrimeDivisors = [0]*(N + 1)   \r\n    for i in range(2,N + 1) : \r\n        if (SumOfPrimeDivisors[i] == 0) : \r\n            for j in range(i,N + 1,i) : \r\n                SumOfPrimeDivisors[j] += i           \r\n    return SumOfPrimeDivisors[N] ",
+    "tests": [
+      {
+        "args": [
+          60
+        ],
+        "expected": 10
+      },
+      {
+        "args": [
+          39
+        ],
+        "expected": 16
+      },
+      {
+        "args": [
+          40
+        ],
+        "expected": 7
+      }
+    ]
+  },
+  {
+    "task_id": 795,
+    "prompt": "Write a function to find the n - cheap price items from a given dataset using heap queue algorithm.",
+    "solution": "import heapq\r\ndef cheap_items(items,n):\r\n  cheap_items = heapq.nsmallest(n, items, key=lambda s: s['price'])\r\n  return cheap_items",
+    "tests": [
+      {
+        "args": [
+          [
+            {
+              "name": "Item-1",
+              "price": 101.1
+            },
+            {
+              "name": "Item-2",
+              "price": 555.22
+            }
+          ],
+          1
+        ],
+        "expected": [
+          {
+            "name": "Item-1",
+            "price": 101.1
+          }
+        ]
+      },
+      {
+        "args": [
+          [
+            {
+              "name": "Item-1",
+              "price": 101.1
+            },
+            {
+              "name": "Item-2",
+              "price": 555.22
+            }
+          ],
+          2
+        ],
+        "expected": [
+          {
+            "name": "Item-1",
+            "price": 101.1
+          },
+          {
+            "name": "Item-2",
+            "price": 555.22
+          }
+        ]
+      },
+      {
+        "args": [
+          [
+            {
+              "name": "Item-1",
+              "price": 101.1
+            },
+            {
+              "name": "Item-2",
+              "price": 555.22
+            },
+            {
+              "name": "Item-3",
+              "price": 45.09
+            },
+            {
+              "name": "Item-4",
+              "price": 22.75
+            }
+          ],
+          1
+        ],
+        "expected": [
+          {
+            "name": "Item-4",
+            "price": 22.75
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 639,
+    "prompt": "Write a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.",
+    "solution": "def sample_nam(sample_names):\r\n  sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))\r\n  return len(''.join(sample_names))",
+    "tests": [
+      {
+        "args": [
+          [
+            "sally",
+            "Dylan",
+            "rebecca",
+            "Diana",
+            "Joanne",
+            "keith"
+          ]
+        ],
+        "expected": 16
+      },
+      {
+        "args": [
+          [
+            "php",
+            "res",
+            "Python",
+            "abcd",
+            "Java",
+            "aaa"
+          ]
+        ],
+        "expected": 10
+      },
+      {
+        "args": [
+          [
+            "abcd",
+            "Python",
+            "abba",
+            "aba"
+          ]
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "task_id": 575,
+    "prompt": "Write a python function to find nth number in a sequence which is not a multiple of a given number.",
+    "solution": "def count_no (A,N,L,R): \r\n    count = 0\r\n    for i in range (L,R + 1): \r\n        if (i % A != 0): \r\n            count += 1\r\n        if (count == N): \r\n            break\r\n    return (i) ",
+    "tests": [
+      {
+        "args": [
+          2,
+          3,
+          1,
+          10
+        ],
+        "expected": 5
+      },
+      {
+        "args": [
+          3,
+          6,
+          4,
+          20
+        ],
+        "expected": 11
+      },
+      {
+        "args": [
+          5,
+          10,
+          4,
+          20
+        ],
+        "expected": 16
+      }
+    ]
+  },
+  {
+    "task_id": 315,
+    "prompt": "Write a python function to find the first maximum length of even word.",
+    "solution": "def find_Max_Len_Even(str): \r\n    n = len(str) \r\n    i = 0\r\n    currlen = 0\r\n    maxlen = 0\r\n    st = -1\r\n    while (i < n): \r\n        if (str[i] == ' '): \r\n            if (currlen % 2 == 0): \r\n                if (maxlen < currlen): \r\n                    maxlen = currlen \r\n                    st = i - currlen \r\n            currlen = 0 \r\n        else : \r\n            currlen += 1\r\n        i += 1\r\n    if (currlen % 2 == 0): \r\n        if (maxlen < currlen): \r\n            maxlen = currlen \r\n            st = i - currlen \r\n    if (st == -1): \r\n        return \"-1\" \r\n    return str[st: st + maxlen] ",
+    "tests": [
+      {
+        "args": [
+          "python language"
+        ],
+        "expected": "language"
+      },
+      {
+        "args": [
+          "maximum even length"
+        ],
+        "expected": "length"
+      },
+      {
+        "args": [
+          "eve"
+        ],
+        "expected": "-1"
+      }
+    ]
+  },
+  {
+    "task_id": 441,
+    "prompt": "Write a function to find the surface area of a cube.",
+    "solution": "def surfacearea_cube(l):\r\n  surfacearea= 6*l*l\r\n  return surfacearea",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": 150
+      },
+      {
+        "args": [
+          3
+        ],
+        "expected": 54
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 600
+      }
+    ]
+  },
+  {
+    "task_id": 171,
+    "prompt": "Write a function to find the perimeter of a pentagon.",
+    "solution": "import math\r\ndef perimeter_pentagon(a):\r\n  perimeter=(5*a)\r\n  return perimeter",
+    "tests": [
+      {
+        "args": [
+          5
+        ],
+        "expected": 25
+      },
+      {
+        "args": [
+          10
+        ],
+        "expected": 50
+      },
+      {
+        "args": [
+          15
+        ],
+        "expected": 75
+      }
+    ]
+  },
+  {
+    "task_id": 480,
+    "prompt": "Write a python function to find the maximum occurring character in a given string.",
+    "solution": "def get_max_occuring_char(str1):\r\n  ASCII_SIZE = 256\r\n  ctr = [0] * ASCII_SIZE\r\n  max = -1\r\n  ch = ''\r\n  for i in str1:\r\n    ctr[ord(i)]+=1;\r\n  for i in str1:\r\n    if max < ctr[ord(i)]:\r\n      max = ctr[ord(i)]\r\n      ch = i\r\n  return ch",
+    "tests": [
+      {
+        "args": [
+          "data"
+        ],
+        "expected": "a"
+      },
+      {
+        "args": [
+          "create"
+        ],
+        "expected": "e"
+      },
+      {
+        "args": [
+          "brilliant girl"
+        ],
+        "expected": "i"
+      }
+    ]
+  },
+  {
+    "task_id": 532,
+    "prompt": "Write a function to check if the two given strings are permutations of each other.",
+    "solution": "def check_permutation(str1, str2):\r\n  n1=len(str1)\r\n  n2=len(str2)\r\n  if(n1!=n2):\r\n    return False\r\n  a=sorted(str1)\r\n  str1=\" \".join(a)\r\n  b=sorted(str2)\r\n  str2=\" \".join(b)\r\n  for i in range(0, n1, 1):\r\n    if(str1[i] != str2[i]):\r\n      return False\r\n  return True",
+    "tests": [
+      {
+        "args": [
+          "abc",
+          "cba"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "test",
+          "ttew"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "xxyz",
+          "yxzx"
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": 515,
+    "prompt": "Write a function to check if there is a subset with sum divisible by m.",
+    "solution": "def modular_sum(arr, n, m): \r\n\tif (n > m): \r\n\t\treturn True\r\n\tDP = [False for i in range(m)] \r\n\tfor i in range(n): \r\n\t\tif (DP[0]): \r\n\t\t\treturn True\r\n\t\ttemp = [False for i in range(m)] \r\n\t\tfor j in range(m): \r\n\t\t\tif (DP[j] == True): \r\n\t\t\t\tif (DP[(j + arr[i]) % m] == False): \r\n\t\t\t\t\ttemp[(j + arr[i]) % m] = True\r\n\t\tfor j in range(m): \r\n\t\t\tif (temp[j]): \r\n\t\t\t\tDP[j] = True\r\n\t\tDP[arr[i] % m] = True\r\n\treturn DP[0]",
+    "tests": [
+      {
+        "args": [
+          [
+            3,
+            1,
+            7,
+            5
+          ],
+          4,
+          6
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            1,
+            7
+          ],
+          2,
+          5
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            1,
+            6
+          ],
+          2,
+          5
+        ],
+        "expected": false
+      }
+    ]
+  },
+  {
+    "task_id": 46,
+    "prompt": "Write a python function to determine whether all the numbers are different from each other are not.",
+    "solution": "def test_distinct(data):\r\n  if len(data) == len(set(data)):\r\n    return True\r\n  else:\r\n    return False;",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            5,
+            7,
+            9
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          [
+            2,
+            4,
+            5,
+            5,
+            7,
+            9
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": 457,
+    "prompt": "Write a python function to find the sublist having minimum length.",
+    "solution": "def Find_Min(lst): \r\n    minList = min((x) for x in lst) \r\n    return minList",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              7,
+              8
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              "x"
+            ],
+            [
+              "x",
+              "y"
+            ],
+            [
+              "x",
+              "y",
+              "z"
+            ]
+          ]
+        ],
+        "expected": [
+          "x"
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 518,
+    "prompt": "Write a function to find the square root of a perfect number.",
+    "solution": "import math\r\ndef sqrt_root(num):\r\n sqrt_root = math.pow(num, 0.5)\r\n return sqrt_root ",
+    "tests": [
+      {
+        "args": [
+          4
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          16
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          400
+        ],
+        "expected": 20
+      }
+    ]
+  },
+  {
+    "task_id": 282,
+    "prompt": "Write a function to substaract two lists using map and lambda function.",
+    "solution": "def sub_list(nums1,nums2):\r\n  result = map(lambda x, y: x - y, nums1, nums2)\r\n  return list(result)",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "expected": [
+          -3,
+          -3,
+          -3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          -2,
+          -2
+        ]
+      },
+      {
+        "args": [
+          [
+            90,
+            120
+          ],
+          [
+            50,
+            70
+          ]
+        ],
+        "expected": [
+          40,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 847,
+    "prompt": "Write a python function to copy a list from a singleton tuple.",
+    "solution": "def lcopy(xs):\n  return xs[:]\n",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            4,
+            8,
+            2,
+            10,
+            15,
+            18
+          ]
+        ],
+        "expected": [
+          4,
+          8,
+          2,
+          10,
+          15,
+          18
+        ]
+      },
+      {
+        "args": [
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "expected": [
+          4,
+          5,
+          6
+        ]
+      }
+    ]
+  },
+  {
+    "task_id": 733,
+    "prompt": "Write a function to find the index of the first occurrence of a given number in a sorted array.",
+    "solution": "def find_first_occurrence(A, x):\r\n    (left, right) = (0, len(A) - 1)\r\n    result = -1\r\n    while left <= right:\r\n        mid = (left + right) // 2\r\n        if x == A[mid]:\r\n            result = mid\r\n            right = mid - 1\r\n        elif x < A[mid]:\r\n            right = mid - 1\r\n        else:\r\n            left = mid + 1\r\n    return result",
+    "tests": [
+      {
+        "args": [
+          [
+            2,
+            5,
+            5,
+            5,
+            6,
+            6,
+            8,
+            9,
+            9,
+            9
+          ],
+          5
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            2,
+            3,
+            5,
+            5,
+            6,
+            6,
+            8,
+            9,
+            9,
+            9
+          ],
+          5
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            2,
+            4,
+            1,
+            5,
+            6,
+            6,
+            8,
+            9,
+            9,
+            9
+          ],
+          6
+        ],
+        "expected": 4
+      }
+    ]
+  }
+]

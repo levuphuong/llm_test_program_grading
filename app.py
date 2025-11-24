@@ -3,25 +3,34 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 import json
 import os
+import traceback
 
-# from evaluator import run_tests_from_llm, extract_last_function_and_args, grade_student_code, load_current_prompt
 from evaluator import (
-    minimally_fix_indent,
-    grade_student_code,
-    load_current_prompt,
-    llm_predict_output,
-    run_tests_from_llm,
     extract_last_function_signature,
     extract_last_function_and_args
 )
+
+from llm_finetune import (
+    llm_predict_output_api,
+    run_tests_api,
+    grade_student_code_api
+)
+
 app = FastAPI()
 
-# Mount thư mục frontend để serve file tĩnh
+# ============================
+# Mount frontend
+# ============================
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
-# Load MBPP dataset
-MBPP_FILE = "mbpp.jsonl"
+# ============================
+# Load dataset
+# ============================
+MBPP_FILE = "dataset/mbpp.jsonl"
 dataset = []
+
+print("🔍 Loading MBPP dataset...")
+
 with open(MBPP_FILE, "r", encoding="utf-8") as f:
     for line in f:
         line = line.strip()
@@ -33,39 +42,87 @@ with open(MBPP_FILE, "r", encoding="utf-8") as f:
                 data["code"] = ""
             dataset.append(data)
         except json.JSONDecodeError:
-            continue
+            print("⚠️ JSON decode error in MBPP file, skipping line.")
 
-# Lấy list câu hỏi với ID, text và code
+print(f"✅ Loaded {len(dataset)} MBPP items")
+
 question_list = [{"task_id": d["task_id"], "text": d["text"], "code": d["code"]} for d in dataset]
 
 
 @app.get("/", response_class=HTMLResponse)
 async def index():
-    # Đọc template HTML từ file
     with open("frontend/index.html", "r", encoding="utf-8") as f:
         html_template = f.read()
 
-    # Render sidebar dynamic
     questions_json = json.dumps(question_list)
     html_rendered = html_template.replace("<!-- QUESTION_LIST_PLACEHOLDER -->", questions_json)
 
     return HTMLResponse(html_rendered)
 
 
+# ===============================================================
+# MAIN API
+# ===============================================================
 @app.post("/submit_code")
 async def submit_code(problem: str = Form(...), code: str = Form(...)):
-    base_prompt = load_current_prompt()
-    
-    # Lấy hàm cuối cùng từ code user
-    func_name = extract_last_function_and_args(code)[0]
-    
-    # Chạy LLM để dự đoán test outputs (có thể không cần nếu dùng test set riêng)
-    llm_pred = llm_predict_output(problem, extract_last_function_signature(code), base_prompt)
-    
-    # Chạy code user trên test cases LLM dự đoán
-    test_result = run_tests_from_llm(code, func_name, llm_pred, pass_if_expected_none=True)
-    
-    # Chấm điểm
-    score = grade_student_code(code, test_result)
-    
-    return {"score": score, "test_result": test_result}
+
+    print("\n======================")
+    print("📥 RECEIVE SUBMISSION")
+    print("======================")
+    print("🔹 Problem:", problem)
+    print("🔹 Code received:\n", code)
+    print("----------------------")
+
+    try:
+        # ================================
+        # 1. Extract function
+        # ================================
+        print("🔍 Extracting function name...")
+        func_name = extract_last_function_and_args(code)[0]
+        print("➡️ Function name:", func_name)
+
+        func_sig = extract_last_function_signature(code)
+        print("➡️ Function signature:", func_sig)
+
+        # ================================
+        # 2. Ask LLM to generate test
+        # ================================
+        print("\n🤖 Calling LLM to generate test cases...")
+        test_list = llm_predict_output_api(problem, func_sig)
+
+        print("➡️ LLM test_list:", test_list)
+
+        if not test_list:
+            print("❌ ERROR: LLM did not return test cases")
+            return {"error": "LLM không sinh test case"}
+
+        # ================================
+        # 3. Run student's code
+        # ================================
+        print("\n🧪 Running student's code with test cases...")
+        run_result = run_tests_api(code, test_list)
+
+        print("➡️ Test results:", run_result)
+
+        # ================================
+        # 4. Grade
+        # ================================
+        print("\n🏆 Grading student code...")
+        score = grade_student_code_api(code, run_result)
+
+        print("➡️ Score:", score)
+
+        print("\n🎉 DONE — Returning result to frontend")
+
+        return {
+            "score": score,
+            "test_result": run_result
+        }
+
+    except Exception as e:
+        print("\n❌ SERVER ERROR OCCURRED!")
+        print("Error:", e)
+        print("--------- TRACEBACK ---------")
+        traceback.print_exc()
+        print("-----------------------------")
+        return {"error": str(e)}
